@@ -1,0 +1,1 @@
+# kentico-cloud-schema-generator-azure-function
