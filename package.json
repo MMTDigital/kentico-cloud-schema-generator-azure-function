@@ -1,9 +1,14 @@
 {
   "scripts": {
+    "start": "./node_modules/.bin/func start",
     "generate-schema": "kc-generate-gql-schema --projectId $KENTICO_CLOUD_PROJECT_ID --outputFile $KENTICO_CLOUD_SCHEMA_OUTPUT"
   },
   "dependencies": {
     "azure-storage": "^2.10.2",
     "kentico-cloud-graphql-schema-generator": "1.0.1"
+  },
+  "devDependencies": {
+    "azure-functions-core-tools": "^2.4.317",
+    "node-zip": "^1.1.1"
   }
 }
