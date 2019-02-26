@@ -44,7 +44,7 @@ const uploadBlob = async (context) => {
   await createBlob(context, blobContainerName)
 }
 
-module.exports = async (context, req) => {
+module.exports = async (context, request) => {
   context.log('Kentico Cloud Schema Generator Request Received')
 
   try {
