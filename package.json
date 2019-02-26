@@ -1,4 +1,10 @@
 {
+  "name": "kentico-cloud-schema-generator-azure-function",
+  "version": "1.0.0",
+  "main": "generate-schema/index.js",
+  "repository": "git@github.com:MMTDigital/kentico-cloud-schema-generator-azure-function.git",
+  "author": "James Sear <jpsear@gmail.com>",
+  "license": "MIT",
   "scripts": {
     "start": "./node_modules/.bin/func start",
     "generate-schema": "kc-generate-gql-schema --projectId $KENTICO_CLOUD_PROJECT_ID --outputFile $KENTICO_CLOUD_SCHEMA_OUTPUT"
@@ -8,7 +14,6 @@
     "kentico-cloud-graphql-schema-generator": "1.0.1"
   },
   "devDependencies": {
-    "azure-functions-core-tools": "^2.4.317",
-    "node-zip": "^1.1.1"
+    "azure-functions-core-tools": "^2.4.317"
   }
 }
