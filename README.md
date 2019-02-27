@@ -2,6 +2,8 @@
 
 An Azure Function setup that will generate a Kentico Cloud content model GraphQL schema and upload it to Azure Storage as a blob.
 
+Note: you likely will need this repo also – https://github.com/MMTDigital/kentico-cloud-graphql-server-azure-function
+
 ![Container Diagram](./container-diagram.png?raw=true "Container Diagram")
 
 Generally-speaking, this would be triggered via a webhook, sent out from Kentico Cloud when content models change are updated. However, it can also be triggered manually by hitting the Azure Function URL endpoint.
