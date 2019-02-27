@@ -10,7 +10,9 @@ Generally-speaking, this would be triggered via a webhook, sent out from Kentico
 
 1) Fork this repo
 2) Install latest stable version of Node and Yarn
-3) Create a file at the root of the repo called `local.settings.json` and place this in it:
+3) Install dependencies: `yarn`
+4) Run through the deployment process outlined below. Note, this may have already been done by your team, so check first
+5) Create a file at the root of the repo called `local.settings.json` and place this in it:
 
 ```json
 {
@@ -27,11 +29,21 @@ Generally-speaking, this would be triggered via a webhook, sent out from Kentico
 ```
 **Do not commit this file to the repo**
 
-4) Install dependencies: `yarn`
-5) Populate the Kentico Cloud Project ID from Kentico Cloud
-6) Run through the deployment process outlined below. Note, this may have already been done by your team, so check first
-7) Populate the `AzureWebJobsStorage` and `AZURE_STORAGE_CONNECTION_STRING` with the created Azure Storage connection string
-8) Finally, you can run and develop locally with `yarn start`
+6) Populate the environment values. Here is a small explanation of what each one is:
+
+- `AzureWebJobsStorage` – A connection string to an Azure Storage resource. This is purely for the function to store in-memory things. This can be obtained after you have followed the deploy steps outlined below.
+
+- `AZURE_STORAGE_CONNECTION_STRING` – A connection string to an Azure Storage resource. This must be the storage that holds your Kentico Cloud Schema. This is expected to be _different_ to the value of `AzureWebJobsStorage`.
+
+-  `FUNCTIONS_WORKER_RUNTIME` – The runtime of the function. This must be set to `"node"`
+
+-  `KENTICO_CLOUD_PROJECT_ID` – Your public Kentico Cloud API key. This should match the API key outlined in the the `kentico-cloud-schema-generator-azure-function` repo
+
+- `KENTICO_CLOUD_SCHEMA_OUTPUT` – The location of the initial in-memory generated schema. This is used to create the Azure Storage blob. Default should be fine for most people.
+
+7) Finally, you can run and develop locally with `yarn start`
+
+### Advanced Local Development
 
 The tool set to run and develop Azure Functions is provided by Azure Functions Core Tools. This has been installed as a dev dependency. To read more about these tools, check out the documentation: https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local
 
@@ -58,7 +70,18 @@ Currently, this is a horrible manual process. It uses the Azure "Deployment Cent
 7) Run through the next steps for CI / CD. This is slightly different per-provider
 8) If you are setting up a development environment, use the `dev` branch of the repo, otherwise use the `master` branch. How your branching strategy and deployment of the function works moving forward is up to you. There is a high chance that this function will never need to change at all.
 
-### Notes and thoughts:
+### Function App Storage
+
+Once you have set up a Function App within Azure, a Storage resource will be automatically created for you. You can find it in the **Storage Accounts** section. The name should match the auto-generated name in step 2. You will need to grab the connection string for this storage:
+
+- Click the storage name
+- Go to **Access Keys**
+- Copy the connection string in `key1`
+
+**Note: this connection string is confidential. It should not be checked into a repo and ideally not shared insecurely**
+
+
+## Further Notes and thoughts:
 
 I utterly hate this deployment process. However, I tried the `serverless` framework and the Azure tooling is no where near as developed as the AWS stuff. You can't even invoke locally, which is a deal-breaker.
 
