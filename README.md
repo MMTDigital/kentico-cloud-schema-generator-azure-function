@@ -22,9 +22,11 @@ Generally-speaking, this would be triggered via a webhook, sent out from Kentico
   "Values": {
     "AzureWebJobsStorage": "",
     "AZURE_STORAGE_CONNECTION_STRING": "",
-    "FUNCTIONS_WORKER_RUNTIME": "node",
     "KENTICO_CLOUD_PROJECT_ID": "",
-    "KENTICO_CLOUD_SCHEMA_OUTPUT": "./kentico-cloud-schema.graphql"
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "GENERATED_SCHEMA_OUTPUT": "./generated-schema.graphql",
+    "SCHEMA_STORAGE_CONTAINER_NAME": "kentico-cloud-schema",
+    "SCHEMA_STORAGE_BLOB_NAME": "kentico-cloud-schema.graphql"
   }
 }
 
@@ -37,11 +39,15 @@ Generally-speaking, this would be triggered via a webhook, sent out from Kentico
 
 - `AZURE_STORAGE_CONNECTION_STRING` – A connection string to an Azure Storage resource. This must be the storage that holds your Kentico Cloud Schema. This is expected to be _different_ to the value of `AzureWebJobsStorage`.
 
--  `FUNCTIONS_WORKER_RUNTIME` – The runtime of the function. This must be set to `"node"`
-
 -  `KENTICO_CLOUD_PROJECT_ID` – Your public Kentico Cloud API key. This should match the API key outlined in the the `kentico-cloud-schema-generator-azure-function` repo
 
-- `KENTICO_CLOUD_SCHEMA_OUTPUT` – The location of the initial in-memory generated schema. This is used to create the Azure Storage blob. Default should be fine for most people.
+-  `FUNCTIONS_WORKER_RUNTIME` – The runtime of the function. This must be set to `"node"`
+
+- `GENERATED_SCHEMA_OUTPUT` – The location of the initial in-memory generated schema. This is used to create the Azure Storage blob. Default should be fine for most people.
+
+- `SCHEMA_STORAGE_CONTAINER_NAME` – The name of the Azure Storage resource's container. If you leave the defaults of this repo and the `kentico-cloud-schema-generator-azure-function` repo, this should just work.
+
+- `SCHEMA_STORAGE_BLOB_NAME` – The file name of the created blob of schema. If you leave the defaults of this repo and the `kentico-cloud-schema-generator-azure-function` repo, this should just work.
 
 7) Finally, you can run and develop locally with `yarn start`
 

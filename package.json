@@ -6,11 +6,11 @@
   "author": "James Sear <jpsear@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "./node_modules/.bin/func start",
-    "generate-schema": "kc-generate-gql-schema --projectId $KENTICO_CLOUD_PROJECT_ID --outputFile $KENTICO_CLOUD_SCHEMA_OUTPUT"
+    "start": "./node_modules/.bin/func start"
   },
   "dependencies": {
     "azure-storage": "^2.10.2",
+    "kentico-cloud-delivery": "^5.7.2",
     "kentico-cloud-graphql-schema-generator": "1.0.1"
   },
   "devDependencies": {
